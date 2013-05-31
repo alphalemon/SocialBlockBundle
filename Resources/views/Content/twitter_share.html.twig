@@ -1,0 +1,7 @@
+{% extends "AlphaLemonCmsBundle:Editor:base_editor.html.twig" %}
+
+{% block body %}
+<div {{ editor|raw }}>
+<a href="https://twitter.com/share" class="twitter-share-button" {% spaceless %}{{ data|raw }}{% endspaceless %}>Tweet</a>
+</div>
+{% endblock %}

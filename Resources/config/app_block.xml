@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>        
+        <parameter key="twittershare.external_stylesheets.cms" type="collection">
+            <parameter>@SocialBlockBundle/Resources/public/css/twitter_share.css</parameter>
+        </parameter>
+        
+        <parameter key="facebooklikebutton.external_javascripts.cms" type="collection">
+            <parameter>@SocialBlockBundle/Resources/public/js/facebook_like.js</parameter>
+        </parameter>
+
+        <parameter key="facebook_like_button.block.class">AlphaLemon\Block\SocialBlockBundle\Core\Block\AlBlockManagerFacebookLikeButton</parameter>
+        <parameter key="twitter_share.block.class">AlphaLemon\Block\SocialBlockBundle\Core\Block\AlBlockManagerTwitterShare</parameter>
+        <parameter key="facebook_like.form.class">AlphaLemon\Block\SocialBlockBundle\Core\Form\Facebook\FacebookLikeType</parameter>
+        <parameter key="facebook_open_graph.form.class">AlphaLemon\Block\SocialBlockBundle\Core\Form\Facebook\FacebookOpenGraphType</parameter>
+        <parameter key="twitter_share.form.class">AlphaLemon\Block\SocialBlockBundle\Core\Form\Twitter\TwitterShareType</parameter>
+    </parameters>
+
+    <services>
+        <service id="facebook_like_button.block" class="%facebook_like_button.block.class%">
+            <argument type="service" id="service_container"/>
+            <tag name="alphalemon_cms.blocks_factory.block" description="Facebook Like Button" type="FacebookLikeButton" group="social,Social" />
+        </service>
+        
+        <service id="twitter_share.block" class="%twitter_share.block.class%">            
+            <argument type="service" id="service_container" />
+            <tag name="alphalemon_cms.blocks_factory.block" description="Twitter Share" type="TwitterShare" group="social,Social" />
+        </service>
+        
+        <service id="facebook_like.form" class="%facebook_like.form.class%">
+        </service>
+        
+        <service id="facebook_open_graph.form" class="%facebook_open_graph.form.class%">
+        </service>
+        
+        <service id="twitter_share.form" class="%twitter_share.form.class%">
+        </service>
+    </services>
+</container>

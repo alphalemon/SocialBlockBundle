@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="social_sdk.listener.class">AlphaLemon\Block\SocialBlockBundle\Core\Listener\RenderSdk</parameter>
+        <parameter key="social_sdk.sdk_collection.class">AlphaLemon\Block\SocialBlockBundle\Core\SdkCollection\SdkCollection</parameter>
+        <parameter key="social_sdk.facebook_interface.class">AlphaLemon\Block\SocialBlockBundle\Core\Sdk\SdkFacebook</parameter>
+        <parameter key="social_sdk.twitter_interface.class">AlphaLemon\Block\SocialBlockBundle\Core\Sdk\SdkTwitter</parameter>
+    </parameters>
+
+    <services>
+        <service id="social_sdk.sdk_collection" class="%social_sdk.sdk_collection.class%">
+        </service>
+        
+        <service id="social_sdk.listener" class="%social_sdk.listener.class%">
+            <argument type="service" id="social_sdk.sdk_collection"/>
+            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" priority="0" />
+        </service>
+        
+        <service id="social_sdk.facebook_interface" class="%social_sdk.facebook_interface.class%">
+            <argument type="service" id="templating"/>
+            <tag name="social_sdk.sdk_interface" />
+        </service>
+        
+        <service id="social_sdk.twitter_interface" class="%social_sdk.twitter_interface.class%">
+            <argument type="service" id="templating"/>
+            <tag name="social_sdk.sdk_interface" />
+        </service>
+    </services>
+</container>

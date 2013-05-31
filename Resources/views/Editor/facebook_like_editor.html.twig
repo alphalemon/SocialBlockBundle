@@ -1,0 +1,30 @@
+
+<div id="al_facebook_editor_tabs">
+    <ul class="nav nav-tabs" >
+        <li><a href="#al-editor-tab-1" data-toggle="tab" class="active">Like button</a></li>
+        <li><a href="#al-editor-tab-2" data-toggle="tab">Open graph</a></li>
+    </ul>
+
+    <form id="{{ editor.form_name }}" action="#" method="post" {{ form_enctype(editor.form_like) }}>
+        <div class="tab-content">
+            <div id="al-editor-tab-1" class="tab-pane active">
+                <table class="al_editor_table">
+                    {% include "AlphaLemonCmsBundle:Item:_form_renderer.html.twig" with {"form" : editor.form_like} %}
+                    <tr><td colspan="2">Leave the url empty to use the current page url</td></tr>
+                </table>
+            </div>
+            <div id="al-editor-tab-2" class="tab-pane">
+                <table class="al_editor_table">
+                    {% include "AlphaLemonCmsBundle:Item:_form_renderer.html.twig" with {"form" : editor.form_open_graph} %}
+                    <tr><td colspan="2">Leave the url empty to use the current page url</td></tr>
+                    <tr><td colspan="2">Leave the title empty to use the current page title</td></tr>
+                </table>
+            </div>
+        </div>
+    </form>   
+</div>
+
+<div class="pull-right">
+    <a class="al_editor_save btn btn-primary" href="#" >Save</a>
+</div>
+<div class="clearfix"></div>

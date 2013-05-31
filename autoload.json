@@ -1,0 +1,7 @@
+{
+    "bundles" : {
+        "AlphaLemon\\Block\\SocialBlockBundle\\SocialBlockBundle" : {
+            "environments" : ["all"]
+        }
+    }
+}

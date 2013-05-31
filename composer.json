@@ -1,0 +1,23 @@
+{
+  "name": "alphalemon/app-social-block-bundle",
+  "description": "An AlphaLemon CMS app to manage social buttons from several social networks",
+  "keywords": ["alphalemon", "cms", "app"],
+  "homepage": "http://alphalemon.com",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "AlphaLemon",
+      "email": "info@alphalemon.com"
+    }
+  ],
+  "autoload": {
+      "psr-0": { "AlphaLemon\\Block\\SocialBlockBundle": ""
+    }
+  },
+  "require-dev": {
+      "alphalemon/alphalemon-cms-bundle": "dev-master"
+  },
+  "target-dir" : "AlphaLemon/Block/SocialBlockBundle",
+  "minimum-stability": "dev"
+}
