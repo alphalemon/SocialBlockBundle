@@ -131,17 +131,26 @@ class AlBlockManagerFacebookLikeButton extends AlBlockManagerContainer
      */
     protected function edit(array $values)
     {
+        $fixedValues = $this->convertSerializedDataToJson($values);
+
+        return parent::edit($fixedValues);
+    }
+    
+    /**
+     * Fixes the json passed by the ajax transaction
+     * 
+     * @param array $values
+     * @return array
+     */
+    protected function convertSerializedDataToJson(array $values)
+    {
         if (array_key_exists('Content', $values)) {
             $unserializedData = array();
             $serializedData = $values['Content'];
             parse_str($serializedData, $unserializedData);
-                        
+            
             $like = $unserializedData["al_like"];
-            unset($like["id"]);
-            
-            $graph = $unserializedData["al_open_graph"];
-            unset($graph["id"]);
-            
+            $graph = $unserializedData["al_open_graph"];            
             $content = array(
                 "like" => $like,
                 "graph" => $graph,
@@ -149,10 +158,11 @@ class AlBlockManagerFacebookLikeButton extends AlBlockManagerContainer
 
             $values['Content'] = json_encode($content);
         }
-
-        return parent::edit($values);
+        
+        return $values;
     }
-    
+
+
     /**
      *  Fixes the boolean values handled as strings by json
      */
@@ -172,10 +182,4 @@ class AlBlockManagerFacebookLikeButton extends AlBlockManagerContainer
         
         return $item;
     }
-    
-    /*
-    public function getHideInEditMode()
-    {
-        return true;
-    }*/
 }
