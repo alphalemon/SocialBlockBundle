@@ -15,7 +15,7 @@
  *
  */
 
-namespace AlphaLemon\Block\ImageBundle\Tests\Unit\Core\Form;
+namespace AlphaLemon\Block\SocialBlockBundle\Tests\Unit\Core\Listener;
 
 use AlphaLemon\AlphaLemonCmsBundle\Tests\TestCase;
 use AlphaLemon\Block\SocialBlockBundle\Core\Listener\RenderSdk;
@@ -69,19 +69,19 @@ class RenderSdkListenerTest extends TestCase
         $response
             ->expects($this->once())
             ->method('getContent')
-            ->will($this->returnValue($responseContent));
+            ->will($this->returnValue($responseContent))
         ;
         
         $response
             ->expects($this->once())
             ->method('setContent')
-            ->with($expectedResult);
+            ->with($expectedResult)
         ;
         
         $event
             ->expects($this->once())
             ->method('getResponse')
-            ->will($this->returnValue($response));
+            ->will($this->returnValue($response))
         ;
     
         $listener = new RenderSdk($sdkCollection);
@@ -122,7 +122,7 @@ class RenderSdkListenerTest extends TestCase
         $sdk
             ->expects($this->once())
             ->method('render')
-            ->will($this->returnValue($content));
+            ->will($this->returnValue($content))
         ;
         
         return $sdk;

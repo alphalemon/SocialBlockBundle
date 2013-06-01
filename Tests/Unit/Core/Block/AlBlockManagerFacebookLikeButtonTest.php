@@ -15,10 +15,18 @@
  * 
  */
 
-namespace AlphaLemon\Block\SocialBlockBundle\Tests\Core\Block;
+namespace AlphaLemon\Block\SocialBlockBundle\Tests\Unit\Core\Block;
 
 use AlphaLemon\AlphaLemonCmsBundle\Tests\Unit\Core\Content\Block\Base\AlBlockManagerContainerBase;
 use AlphaLemon\Block\SocialBlockBundle\Core\Block\AlBlockManagerFacebookLikeButton;
+
+class AlBlockManagerFacebookLikeButtonTester extends AlBlockManagerFacebookLikeButton
+{
+    public function convertSerializedDataToJsonTester($values)
+    {
+        return $this->convertSerializedDataToJson($values);
+    }
+}
 
 /**
  * AlBlockManagerTwitterShareTest
@@ -164,9 +172,18 @@ class AlBlockManagerFacebookLikeTest extends AlBlockManagerContainerBase
         $this->assertEquals($expectedMetataglResult, $blockManager->getMetaTags());
     }
     
-    public function testSave()
+    public function testConvertSerializedDataToJson()
     {
-        $this->markTestSkipped("Todo");
+        $data = "al_like[url]=&al_like[send]=1&al_like[layout]=standard&al_like[width]=225&al_like[show_faces]=1&al_like[font]=lucida grande&al_like[colorscheme]=light&al_like[action]=like&al_open_graph[url]=&al_open_graph[title]=&al_open_graph[type]=actor&al_open_graph[image]=&al_open_graph[site_name]=&al_open_graph[admins]=";
+        
+        $blockManager = new AlBlockManagerFacebookLikeButtonTester($this->container, $this->validator);
+        $result = $blockManager->convertSerializedDataToJsonTester(array('Content' => $data));
+        
+        $expectedResult = array(
+            "Content" => '{"like":{"url":"","send":"1","layout":"standard","width":"225","show_faces":"1","font":"lucida grande","colorscheme":"light","action":"like"},"graph":{"url":"","title":"","type":"actor","image":"","site_name":"","admins":""}}',
+        );
+        
+        $this->assertEquals($expectedResult, $result);
     }
     
     public function getHtmlProvider()

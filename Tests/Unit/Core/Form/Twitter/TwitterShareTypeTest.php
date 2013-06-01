@@ -15,7 +15,7 @@
  *
  */
 
-namespace AlphaLemon\Block\ImageBundle\Tests\Unit\Core\Form;
+namespace AlphaLemon\Block\SocialBlockBundle\Tests\Unit\Core\Form\Twitter;
 
 use AlphaLemon\AlphaLemonCmsBundle\Tests\Unit\Core\Form\Base\AlBaseType;
 use AlphaLemon\Block\SocialBlockBundle\Core\Form\Twitter\TwitterShareType;

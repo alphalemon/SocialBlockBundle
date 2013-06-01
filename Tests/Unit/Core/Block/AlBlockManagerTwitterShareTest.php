@@ -15,7 +15,7 @@
  * 
  */
 
-namespace AlphaLemon\Block\SocialBlockBundle\Tests\Core\Block;
+namespace AlphaLemon\Block\SocialBlockBundle\Tests\Unit\Core\Block;
 
 use AlphaLemon\AlphaLemonCmsBundle\Tests\Unit\Core\Content\Block\Base\AlBlockManagerContainerBase;
 use AlphaLemon\Block\SocialBlockBundle\Core\Block\AlBlockManagerTwitterShare;
