@@ -8,7 +8,11 @@ $(document).ready(function() {
         
         $('.al_editor_save').unbind().click(function()
         {
-            $(document).EditBlock('Content', $('#al_facebook_form').serialize());
+            $(document).EditBlock('Content', $('#al_facebook_form').serialize(), null, function(){
+                $('body').find('.fb-like').each(function(){
+                        FB.XFBML.parse();
+                });
+            });
 
             return false;
         });
