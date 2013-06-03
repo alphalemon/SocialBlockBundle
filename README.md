@@ -22,11 +22,11 @@ file:
 
     {
         "require": {
-            "alphalemon/app-social-block-bundle": "dev-master",        
+            "alphalemon/app-social-block-bundle": "1.0.*"
         }
     }
 
 Unit test
 ---------
 
-The bunde is not yet full unit tested.
+The bunde is fully unit tested.

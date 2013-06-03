@@ -37,4 +37,12 @@ abstract class SdkBase implements SdkInterface
     {
         $this->templating = $templating;
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getReplacedTag()
+    {
+        return '</body>';
+    }
 }

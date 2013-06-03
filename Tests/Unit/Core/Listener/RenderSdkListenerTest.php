@@ -93,36 +93,57 @@ class RenderSdkListenerTest extends TestCase
         return array(
             array(
                 array(
-                    $this->initSdk('<script>a rendered sdk</script>'),
+                    $this->initSdk('</body>', '<script>a rendered sdk</script>'),
                 ),
                 'Page contents',
                 'Page contents',
             ),
             array(
                 array(
-                    $this->initSdk('<script>a rendered sdk</script>'),
+                    $this->initSdk('</body>', '<script>a rendered sdk</script>'),
                 ),
-                '<boby>Page contents</body>',
-                '<boby>Page contents<script>a rendered sdk</script></body>',
+                '<body>Page contents</body>',
+                '<body>Page contents<script>a rendered sdk</script></body>',
             ),
             array(
                 array(
-                    $this->initSdk('<script>a rendered sdk</script>'),
-                    $this->initSdk('<script>another rendered sdk</script>'),
+                    $this->initSdk('</body>', '<script>a rendered sdk</script>'),
+                    $this->initSdk('</body>', '<script>another rendered sdk</script>'),
                 ),
-                '<boby>Page contents</body>',
-                "<boby>Page contents<script>a rendered sdk</script>\n<script>another rendered sdk</script></body>",
+                '<body>Page contents</body>',
+                "<body>Page contents<script>a rendered sdk</script>\n<script>another rendered sdk</script></body>",
+            ),
+            array(
+                array(
+                    $this->initSdk('<body>', '<script>a rendered sdk</script>'),
+                ),
+                '<body>Page contents</body>',
+                '<body><script>a rendered sdk</script>Page contents</body>',
+            ),
+            array(
+                array(
+                    $this->initSdk('<body>', '<script>a rendered sdk</script>'),
+                    $this->initSdk('<body>', '<script>another rendered sdk</script>'),
+                ),
+                '<body>Page contents</body>',
+                "<body><script>a rendered sdk</script>\n<script>another rendered sdk</script>Page contents</body>",
             ),
         );
     }
     
-    private function initSdk($content)
+    private function initSdk($tag, $content)
     {
         $sdk = $this->getMock('AlphaLemon\Block\SocialBlockBundle\Core\Sdk\SdkInterface');
         $sdk
             ->expects($this->once())
             ->method('render')
             ->will($this->returnValue($content))
+        ;
+        
+        $sdk
+            ->expects($this->once())
+            ->method('getReplacedTag')
+            ->will($this->returnValue($tag))
         ;
         
         return $sdk;
@@ -134,8 +155,7 @@ class RenderSdkListenerTest extends TestCase
              ->method('rewind');
 
         $sequence = 1;
-        foreach($skds as $skd)
-        {
+        foreach($skds as $skd) { 
             $sdkCollection->expects($this->at($sequence))
                  ->method('valid')
                  ->will($this->returnValue(true));

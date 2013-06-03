@@ -33,4 +33,11 @@ interface SdkInterface
      * @return string
      */
     public function render(FilterResponseEvent $event);
+    
+    /**
+     * Defines the tag that will be replaced to join the rendered SDK
+     *
+     * @return string
+     */
+    public function getReplacedTag();
 }

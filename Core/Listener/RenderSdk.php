@@ -39,16 +39,22 @@ class RenderSdk
 
     public function onKernelResponse(FilterResponseEvent $event)
     {
-        $skdInterfaces = array();
+        $skdContents = array();
         foreach($this->sdkCollection as $sdk)
         {
-            $skdInterfaces[] = $sdk->render($event);
+            $skdContents[$sdk->getReplacedTag()][] = $sdk->render($event);
         }
         
-        if ( ! empty($skdInterfaces)) {
+        if ( ! empty($skdContents)) {
             $response = $event->getResponse();
-            $content = $response->getContent();
-            $content = preg_replace('/\<\/body\>/si', implode(PHP_EOL, $skdInterfaces) . '</body>', $content);
+            $content = $response->getContent(); 
+            foreach($skdContents as $tag => $skdContent) {
+                $regex = sprintf('/%s/si', preg_quote($tag, '/'));
+                $finalContent = implode(PHP_EOL, $skdContent);
+                $finalContent = (strpos($tag, '/') === false) ? $tag . $finalContent : $finalContent . $tag;
+                $content = preg_replace($regex , $finalContent, $content);
+            }
+            
             $response->setContent($content);
         }
     }

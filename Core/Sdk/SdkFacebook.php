@@ -37,4 +37,12 @@ class SdkFacebook extends SdkBase
         
         return $result;
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getReplacedTag()
+    {
+        return '<body>';
+    }
 }
