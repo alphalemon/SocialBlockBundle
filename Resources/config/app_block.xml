@@ -11,6 +11,10 @@
         <parameter key="facebooklikebutton.external_javascripts.cms" type="collection">
             <parameter>@SocialBlockBundle/Resources/public/js/facebook_like.js</parameter>
         </parameter>
+        
+        <parameter key="twittershare.external_javascripts.cms" type="collection">
+            <parameter>@SocialBlockBundle/Resources/public/js/twitter_share.js</parameter>
+        </parameter>
 
         <parameter key="facebook_like_button.block.class">AlphaLemon\Block\SocialBlockBundle\Core\Block\AlBlockManagerFacebookLikeButton</parameter>
         <parameter key="twitter_share.block.class">AlphaLemon\Block\SocialBlockBundle\Core\Block\AlBlockManagerTwitterShare</parameter>
