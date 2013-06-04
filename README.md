@@ -3,6 +3,8 @@ The Social Block Bundle
 This bundle provides social network buttons as AlphaLemon CMS App-Blocks and renders 
 the required SDK for each social network.
 
+[![Build Status](https://secure.travis-ci.org/alphalemon/SocialBlockBundle.png)](http://travis-ci.org/alphalemon/SocialBlockBundle)
+
 Supported Buttons
 -----------------
 
