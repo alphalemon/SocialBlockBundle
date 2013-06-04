@@ -11,12 +11,23 @@
       "email": "info@alphalemon.com"
     }
   ],
+  "repositories": [
+    {
+       "type": "composer",
+       "url": "http://apps.alphalemon.com/"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/alphalemon/common"
+    }
+  ],
   "autoload": {
       "psr-0": { "AlphaLemon\\Block\\SocialBlockBundle": ""
     }
   },
   "require-dev": {
-      "alphalemon/alphalemon-cms-bundle": "dev-master"
+      "alphalemon/alphalemon-cms-bundle": "dev-master",
+      "willdurand/propel-typehintable-behavior": "dev-master"
   },
   "target-dir" : "AlphaLemon/Block/SocialBlockBundle",
   "minimum-stability": "dev"
